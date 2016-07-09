@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Hello_App.Models;
+using System.Web.Mvc;
 
 namespace Hello_App.Controllers
 {
@@ -8,6 +9,13 @@ namespace Hello_App.Controllers
         public ActionResult Greet()
         {
             return View();
+        }
+
+        public ActionResult ViewEmployee()
+        {
+            Employee emp = new Employee("Sukesh", "Marla", 20000);
+            ViewData["Employee"] = emp;
+            return View("ViewSelectedEmployee");
         }
     }
 }
