@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Hello_App.Controllers
@@ -12,6 +9,12 @@ namespace Hello_App.Controllers
         public ActionResult Greet()
         {
             return View("HelloView");
+        }
+
+        public ActionResult DisplayCurrentTime()
+        {
+            ViewData["CurrentTime"] = DateTime.Now.ToString();
+            return View();
         }
     }
 }
