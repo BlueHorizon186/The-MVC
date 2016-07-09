@@ -1,4 +1,5 @@
 ﻿using Hello_App.Models;
+using Hello_App.ViewModels;
 using System.Web.Mvc;
 
 namespace Hello_App.Controllers
@@ -14,7 +15,14 @@ namespace Hello_App.Controllers
         public ActionResult ViewEmployee()
         {
             Employee emp = new Employee("Sukesh", "Marla", 20000);
-            return View("ViewSelectedEmployee", emp);
+            EmployeeViewModel empVM = new EmployeeViewModel(
+                emp.FirstName + " " + emp.LastName,
+                emp.Salary.ToString("C"),
+                "Administrator");
+
+            if (emp.Salary > 15000) { empVM.SalaryColor = "greenyellow"; }
+            else { empVM.SalaryColor = "forestgreen"; }
+            return View("ViewSelectedEmployee", empVM);
         }
     }
 }
