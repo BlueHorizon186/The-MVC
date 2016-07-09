@@ -14,8 +14,7 @@ namespace Hello_App.Controllers
         public ActionResult ViewEmployee()
         {
             Employee emp = new Employee("Sukesh", "Marla", 20000);
-            ViewData["Employee"] = emp;
-            return View("ViewSelectedEmployee");
+            return View("ViewSelectedEmployee", emp);
         }
     }
 }

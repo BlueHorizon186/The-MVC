@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+@model Hello_App.Models.Employee
+
 <!DOCTYPE html>
 
 <html>
@@ -11,14 +13,27 @@
 </head>
 <body>
     <div>
-      @{ 
-          Hello_App.Models.Employee emp = (Hello_App.Models.Employee)
-              ViewBag.Employee;
+      <h2>Employee Details:</h2>
+      <h3>Name: @Model.FirstName @Model.LastName</h3>
+
+      @if (Model.Salary > 15000)
+      {
+          <h3>
+            <span style="background-color:greenyellow">
+              Employee Salary: @Model.Salary.ToString("C")
+            </span>
+          </h3>
       }
 
-      <h2>Employee Details:</h2>
-      <h3>Name: @emp.FirstName @emp.LastName</h3>
-      <h3>Salary: @emp.Salary.ToString("C")</h3>
+      else
+      {
+          <h3>
+            <span style="background-color:forestgreen">
+              Employee Salary: @Model.Salary.ToString("C")
+            </span>
+          </h3>
+      }
+
     </div>
 </body>
 </html>
