@@ -5,13 +5,11 @@
         public string EmployeeName { get; set; }
         public string Salary { get; set; }
         public string SalaryColor { get; set; }
-        public string Username { get; set; }
 
-        public EmployeeViewModel(string empName, string salary, string username)
+        public EmployeeViewModel(string empName, string salary)
         {
             EmployeeName = empName;
             Salary = salary;
-            Username = username;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Hello_App.Models;
 using Hello_App.ViewModels;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace Hello_App.Controllers
@@ -14,15 +15,26 @@ namespace Hello_App.Controllers
 
         public ActionResult ViewEmployee()
         {
-            Employee emp = new Employee("Sukesh", "Marla", 20000);
-            EmployeeViewModel empVM = new EmployeeViewModel(
-                emp.FirstName + " " + emp.LastName,
-                emp.Salary.ToString("C"),
-                "Administrator");
+            var empLstModel = new EmployeeListViewModel();
+            var empBal = new EmployeeBusinessLayer();
 
-            if (emp.Salary > 15000) { empVM.SalaryColor = "greenyellow"; }
-            else { empVM.SalaryColor = "forestgreen"; }
-            return View("ViewSelectedEmployee", empVM);
+            List<Employee> employees = empBal.GetEmployees();
+            List<EmployeeViewModel> empViewModels = new List<EmployeeViewModel>();
+
+            foreach (var emp in employees)
+            {
+                var empVM = new EmployeeViewModel(
+                    emp.FirstName + " " + emp.LastName,
+                    emp.Salary.ToString("C"));
+
+                if (emp.Salary > 15000) { empVM.SalaryColor = "greenyellow"; }
+                else { empVM.SalaryColor = "forestgreen"; }
+                empViewModels.Add(empVM);
+            }
+
+            empLstModel.Employees = empViewModels;
+            empLstModel.Username = "Admin";
+            return View("ViewSelectedEmployee", empLstModel);
         }
     }
 }
