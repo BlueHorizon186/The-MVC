@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Hello_App.Controllers
 {
-    public class FirstMVCController : Controller
+    public class EmployeeController : Controller
     {
         // GET: FirstMVC
         public ActionResult Greet()
@@ -13,7 +13,7 @@ namespace Hello_App.Controllers
             return View();
         }
 
-        public ActionResult ViewEmployee()
+        public ActionResult Index()
         {
             var empLstModel = new EmployeeListViewModel();
             var empBal = new EmployeeBusinessLayer();
@@ -34,7 +34,7 @@ namespace Hello_App.Controllers
 
             empLstModel.Employees = empViewModels;
             empLstModel.Username = "Admin";
-            return View("ViewSelectedEmployee", empLstModel);
+            return View(empLstModel);
         }
     }
 }
