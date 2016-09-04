@@ -36,5 +36,10 @@ namespace Hello_App.Controllers
             empLstModel.Username = "Admin";
             return View(empLstModel);
         }
+
+        public ActionResult AddNew()
+        {
+            return View("CreateEmployee");
+        }
     }
 }
