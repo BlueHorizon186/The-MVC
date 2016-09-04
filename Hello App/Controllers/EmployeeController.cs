@@ -41,5 +41,10 @@ namespace Hello_App.Controllers
         {
             return View("CreateEmployee");
         }
+
+        public string SaveEmployee(Employee e)
+        {
+            return e.FirstName + " " + e.LastName + " " + e.Salary;
+        }
     }
 }
