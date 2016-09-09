@@ -42,12 +42,21 @@ namespace Hello_App.Controllers
             return View("CreateEmployee");
         }
 
-        public string SaveEmployee(Employee e, string BtnSubmit)
+        public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
             {
                 case "Save Employee":
-                    return Content(e.FirstName + " " + e.LastName + " " + e.Salary);
+                    if (ModelState.IsValid)
+                    {
+                        var empBAL = new EmployeeBusinessLayer();
+                        empBAL.SaveEmployee(e);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("CreateEmployee");
+                    }
                 case "Cancel":
                     return RedirectToAction("Index");
             }

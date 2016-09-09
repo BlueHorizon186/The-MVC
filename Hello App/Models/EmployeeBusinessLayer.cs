@@ -21,5 +21,13 @@ namespace Hello_App.Models
             var salesDal = new SalesERPDAL();
             return salesDal.Employees.ToList();
         }
+
+        public Employee SaveEmployee(Employee e)
+        {
+            var salesDal = new SalesERPDAL();
+            salesDal.Employees.Add(e);
+            salesDal.SaveChanges();
+            return e;
+        }
     }
 }
